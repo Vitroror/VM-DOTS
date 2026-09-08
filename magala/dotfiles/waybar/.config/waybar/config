@@ -1,0 +1,247 @@
+// -*- mode: jsonc -*-
+[
+{
+    // "layer": "top", // Waybar at top layer
+    //"position": "bottom", // Waybar position (top|bottom|left|right)
+    "height": 30, // Waybar height (to be removed for auto height)
+    // "width": 1280, // Waybar width
+    "spacing": 4, // Gaps between modules (4px)
+    // Choose the order of the modules
+    "modules-left": [
+	"custom/launcher",
+	"tray",
+        "hyprland/workspaces"
+     ],
+    "modules-center": [
+        "clock",
+	"custom/cava"
+    ],
+    "modules-right": [ 
+	"pulseaudio#audio",
+    "network",
+    "bluetooth",
+	"custom/temperature",
+        "cpu",
+        "memory",
+        "custom/power"
+    ],
+    "hyprland/workspaces": {
+        "format": "{icon}",
+        "tooltip": false,
+        "format-icons": {
+            "1": "1",
+            "2": "2",
+            "3": "3",
+            "4": "4",
+            "5": "5",
+    },
+    },
+    "custom/cava": {
+	"exec": "~/.config/waybar/scripts/cava.sh",
+	"return-type": "json",
+	"format": "{text}",
+	"tooltip": false,
+	"tail": true
+    },
+    "mpris": {
+    "format": "{status_icon} {dynamic}",
+	"status-icons": { "playing": "▶", "paused": "⏸", "stopped": "⏹︎" },
+	"dynamic-order": ["artist", "title"],
+	"dynamic-importance-order": ["title", "artist"],
+	"title-len": 20,
+	"artist-len": 20,
+	"dynamic-len": 24,
+	// "ignored-players": ["firefox"]
+    },
+    "tray": {
+        "icon-size": 18,
+        "spacing": 10
+    },
+
+    "custom/temperature": {
+	"exec": "/home/vm/.config/waybar/scripts/cpu_temp.sh",
+	"interval": 5,
+	"return-type": "json",
+	// não precisa mais de tooltip-format
+	"on-click": "kitty --class wiremix --title btop btop"
+    },
+
+    "network": {
+    "format-icons": [
+        "󰤯",
+        "󰤟",
+        "󰤢",
+        "󰤥",
+        "󰤨"
+    ],
+    "format-wifi": "{icon}",
+    "format-ethernet": "󰈀",
+    "format-linked": "󰈀",
+    "format-disconnected": "󰖪",
+    "format-disabled": "󰖪",
+    "tooltip-format-wifi": "{essid}\nSignal: {signalStrength}% ({signaldBm} dBm)\nIP: {ipaddr}/{cidr}\nGateway: {gwaddr}",
+    "tooltip-format-ethernet": "{ifname}\nIP: {ipaddr}/{cidr}\nGateway: {gwaddr}",
+    "tooltip-format-linked": "{ifname} — no IP address",
+    "tooltip-format-disconnected": "Network disconnected",
+    "interval": 5,
+    "on-click": "kitty --class wiremix --title Impala impala"
+    },
+
+    "clock": {
+        "format": "{:%H:%M}  ",
+        "format-alt": "{:%A, %B %d, %Y (%R)}",
+        "tooltip-format": "<tt><small>{calendar}</small></tt>",
+        "calendar": {
+                    "mode"          : "year",
+                    "mode-mon-col"  : 3,
+                    "weeks-pos"     : "right",
+                    "on-scroll"     : 1,
+                    "format": {
+                              "months":     "<span color='#ffead3'><b>{}</b></span>",
+                              "days":       "<span color='#ecc6d9'><b>{}</b></span>",
+                              "weeks":      "<span color='#99ffdd'><b>W{}</b></span>",
+                              "weekdays":   "<span color='#c283e6'><b>{}</b></span>",
+                              "today":      "<span color='#ff6699'><b><u>{}</u></b></span>"
+                              }
+                    },
+    },
+    "cpu": {
+        "format": " " ,
+        "tooltip": true,
+	"on-click": "kitty --class wiremix --title btop btop",
+	"states": {
+	    "low": 0,
+	    "medium": 50,
+	    "high": 80,
+	},
+    "tooltip": true,
+    },
+    "custom/launcher":{
+        "format": "󰣇 ",
+        "on-click": "swaync-client -t -sw",
+        "escape": true
+    },
+    "memory": {
+        "format": " ",
+	"states": {
+	    "low": 0,
+	    "medium": 50,
+	    "high": 80,
+	},
+	"tooltip": true,
+        "tooltip-format": "󰍛 Total: {total:0.1f}GB, Avail: {avail:0.1f}GB, Used: {used:0.1f}GB ({percentage}%)\n󰓡 Total: {swapTotal:0.1f}GB, Avail: {swapAvail:0.1f}GB, Used: {swapUsed:0.1f}GB ({swapPercentage}%)",
+	"on-click": "kitty --class wiremix --title btop btop",
+    },
+    "pulseaudio#audio": {
+        "format": "{icon} {volume}%",
+        "format-bluetooth": "{icon} 󰂯 {volume}%",
+        "format-bluetooth-muted": "{icon} 󰂯 󰖁",
+        "format-muted": "󰖁",
+        "format-icons": {
+            "headphone": "󰋋",
+            "hands-free": "󰋋",
+            "headset": "󰋋",
+            "phone": "",
+            "portable": "",
+            "car": "",
+            "default": ["󰕿", "󰖀", "󰕾"]
+        },
+        "on-click": "~/.config/waybar/scripts/volume-control.sh mute", 
+        "on-click-right": "kitty --class wiremix --title wiremix wiremix",
+        "on-scroll-up": "~/.config/waybar/scripts/volume-control.sh up",
+        "on-scroll-down": "~/.config/waybar/scripts/volume-control.sh down",
+        "tooltip": true,
+        "tooltip-format": "{icon} {desc} {volume}%"
+    },
+    "pulseaudio#microphone": {
+        "format": "{format_source}",
+        // "format-source": "󰍬 {volume}%",
+        "format-source": "󰍬",
+        // "format-source-muted": "󰍭 {volume}%",
+        "format-source-muted": "󰍭",
+        "on-click": "pactl set-source-mute @DEFAULT_SOURCE@ toggle",
+        "on-scroll-up": "pactl set-source-volume @DEFAULT_SOURCE@ +1%",
+        "on-scroll-down": "pactl set-source-volume @DEFAULT_SOURCE@ -1%",
+        "max-volume": 100,
+        "tooltip": true,
+        "tooltip-format": "{icon} {desc} {volume}%"
+    },
+"bluetooth": {
+    "format": "󰂲",
+    "format-off": "󰂲",
+    "format-disabled": "󰂲",
+    "format-connected": "",
+    "tooltip": true,
+    "tooltip-format": "Bluetooth Settings",
+    "on-click": "kitty --class wiremix --title Bluetui bluetui"
+    },
+    "custom/media": {
+        "format": "{icon} {text}",
+        "return-type": "json",
+        "max-length": 40,
+        "format-icons": {
+            "spotify": "",
+            "default": "🎜"
+        },
+        "escape": true,
+        "exec": "$HOME/.config/waybar/mediaplayer.py 2> /dev/null" // Script in resources folder
+        // "exec": "$HOME/.config/waybar/mediaplayer.py --player spotify 2> /dev/null" // Filter player based on name
+    },
+    "custom/power": {
+        "format" : "⏻ ",
+        "tooltip": false,
+        "on-click": "wlogout -b 4",
+    },
+},
+{
+    // Compact macOS-style application dock.  It is intentionally separate
+    // from the top status bar so both can be customized independently.
+    "name": "dock",
+    "position": "bottom",
+    "layer": "top",
+    // Reserve bottom space so tiled windows do not extend behind the dock.
+    "exclusive": true,
+    "passthrough": false,
+    "height": 15,
+    "margin-bottom": 6,
+    "spacing": 6,
+    "fixed-center": true,
+    "modules-center": [
+        "custom/dock-browser",
+        "custom/dock-files",
+        "custom/dock-terminal",
+        "custom/dock-steam",
+        "custom/dock-discord"
+    ],
+    "custom/dock-browser": {
+        "format": "",
+        "tooltip": true,
+        "tooltip-format": "Zen Browser",
+        "on-click": "zen-browser"
+    },
+    "custom/dock-files": {
+        "format": "",
+        "tooltip": true,
+        "tooltip-format": "Files",
+        "on-click": "thunar"
+    },
+    "custom/dock-terminal": {
+        "format": "",
+        "tooltip": true,
+        "tooltip-format": "Terminal",
+        "on-click": "kitty"
+    },
+    "custom/dock-steam": {
+        "format": "",
+        "tooltip": true,
+        "tooltip-format": "Steam",
+        "on-click": "steam-native"
+    },
+    "custom/dock-discord": {
+        "format": "",
+        "tooltip": true,
+        "tooltip-format": "Discord",
+        "on-click": "discord"
+    }
+}
+]

@@ -1,0 +1,12 @@
+[SddmGreeterTheme]
+Name=Dresden Tahoe
+Description=Moonlit Dresden login theme inspired by the Hyprlock setup
+Author=Local
+License=MIT
+Type=sddm-theme
+Version=1.0
+MainScript=Main.qml
+ConfigFile=theme.conf
+Theme-Id=dresden-tahoe
+Theme-API=2.0
+QtVersion=6

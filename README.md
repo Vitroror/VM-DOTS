@@ -1,126 +1,68 @@
-# dots-magala
+# VM DOTS
 
-Personal dotfiles for my Linux desktop running the Hyprland window manager.
+The following is a repository containing some of my personal dotfiles for a few systems.
 
-## What's Included
+## MAGALA
 
-### Window Manager and Compositor
+### Components
 
-- **Hyprland** -- dynamic tiling Wayland compositor
-- **hyprlock** -- lockscreen
-- **hyprpaper** -- wallpaper setter for Hyprland.
+| Function | Packages |
+| --- | --- |
+| WM ecossystem | hyprland (and hyprmod) |
+| Screenshotting |  hyprshot  |
+| Lockscreen |  hyprlock  |
+| Bar and Dock | waybar (cava for audio widget) |
+| Notifications | swaync |
+| Logout menu | wlogout |
+| Application launcher | fsel |
+| Terminal | kitty |
+| shell | fish |
+| Audio  | wiremix |
+| System monitor   |  btop |
+| GTK/Qt  | kvantum, nwg-look |
+| Text editor | micro |
+| Display manager | sddm |
+| Networking | impala |
 
-### Status Bar
+### Demo
 
-- **waybar** -- top bar with modules
+![Magala desktop demo](magala/figures/demo.png)
+> Wallpaper: View of Dresden by Moonlight, by Johan Christian Dahl
 
-### Notifications
+### Layout
 
-- **swaync** -- notification center
+`magala/dotfiles/` contains the dotfiles. Each top-level directory is a Stow
+package: user packages deploy into `$HOME`, while `sddm` deploys into `/`.
 
-### Application Launcher
+`magala/system/` contains non-Stow system configuration, currently the IWD
+and NetworkManager patches.
 
-- **rofi** -- fullscreen application launcher
+### Installation (Arch-based)
 
-### Logout Screen
+Clone the repository as the desktop user using one of the following methods:
 
-- **wlogout** -- overlay with buttons for lock, logout, restart, and shutdown.
+HTTPS: [https://github.com/Vitroror/dots-magala.git](https://github.com/Vitroror/dots-magala.git)
 
-### Terminal
+SSH: `git@github.com:Vitroror/dots-magala.git`
 
-- **kitty** -- terminal emulator.
+GitHub CLI: `gh repo clone Vitroror/dots-magala`
 
-### Shell
+Then run:
 
-- **fish** -- shell
+```bash
+cd ~/dots-magala
+./magala/install.sh
+```
 
-### Text Editor
+For example, with HTTPS:
 
-- **neovim** -- editor configured with lazy.nvim plugin manager
+```bash
+git clone https://github.com/Vitroror/dots-magala.git ~/dots-magala
+cd ~/dots-magala
+./magala/install.sh
+```
 
-### Audio
-
-- **cava** -- terminal-based audio visualizer
-- **pipewire / wireplumber** -- audio server and session manager.
-- **pamixer / libpulse** -- audio control tools.
-- **playerctl** -- media player control (play, pause, next, previous) via keyboard multimedia keys.
-
-### File Manager
-
-- **thunar** -- graphical file manager.
-
-### Bluetooth
-
-- **blueman** -- Bluetooth manager with applet and manager GUI.
-
-### Network
-
-- **networkmanager** -- network connection management.
-
-### System Tools
-
-- **btop** -- system resource monitor (CPU, memory, disks, network, processes).
-- **lm_sensors** -- hardware temperature monitoring.
-- **hyprshot** -- screenshot tool
-- **kvantum** -- Qt theme engine.
-- **nwg-look** -- GTK settings manager for wayland.
-
-### Theme and Icons
-
-- **materia-gtk-theme** -- GTK theme (Materia-dark-compact).
-- **papirus-icon-theme** / **nordzy-icon-theme** -- icon themes.
-- **ttf-font-awesome** / **ttf-jetbrains-mono-nerd** / **ttf-fira-code-nerd** / **ttf-geist-mono-nerd** -- icon and monospace fonts.
-
-### Browser
-
-- **zen-browser-bin** -- the Zen Browser (from AUR).
-
----
-
-## How to Use the Install Script
-
-The `install.sh` script installs all required packages and copies the dotfiles into `~/.config/`. It is designed for Arch Linux systems and uses `yay` as the AUR helper.
-
-### Prerequisites
-
-- Arch Linux (or an Arch-based distribution)
-- An internet connection
-- `sudo` access
-
-### Steps
-
-1.  Open a terminal and clone the repository:
-
-    ```
-    git clone <repository-url>
-    cd dots-gm
-    ```
-
-2.  Make the install script executable:
-
-    ```
-    chmod +x install.sh
-    ```
-
-3.  Run the script:
-
-    ```
-    ./install.sh
-    ```
-
-### What the script does, step by step
-
-1.  Checks whether `git` and `base-devel` are installed. If not, installs them with pacman.
-2.  Checks whether `yay` (the AUR helper) is installed. If not, clones the yay repository from AUR, builds it, and installs it.
-3.  Installs every package in the list using `yay -S --needed`. This includes both official Arch packages and AUR packages (zen-browser-bin, nordzy-icon-theme, ttf-geist-mono-nerd).
-4.  Creates a timestamped backup folder at `~/.config_backup_<date>`.
-5.  For each configuration folder listed in the script, moves any existing folder in `~/.config/` to the backup directory, then copies the new configuration from the `dotconfig/` folder.
-6.  Applies the Materia-dark-compact GTK theme and Nordzy-dark icon theme system-wide via `gsettings`.
-7.  Changes the default login shell to Fish if it is not already the current shell.
-8.  Prints a completion message and suggests rebooting the system.
-
-### After running
-
-- Reboot your computer or log out and back in for all changes to take effect.
-- All your previous configurations are saved in the backup folder created during the install.
-- You can delete the cloned repository if you no longer need it.
+The installer installs the recorded official and AUR packages, deploys the
+Stow packages, configures IWD/NetworkManager, enables the required services,
+sets GTK/icon defaults, and configures Fish as the login shell. Reboot once it
+completes.
