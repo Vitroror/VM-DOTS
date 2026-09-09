@@ -31,8 +31,10 @@ The following is a repository containing some of my personal dotfiles for a few 
 
 ### Layout
 
-`magala/dotfiles/` contains the dotfiles. Each top-level directory is a Stow
-package: user packages deploy into `$HOME`, while `sddm` deploys into `/`.
+`magala/dotfiles/` contains the dotfiles. Its user packages deploy into
+`$HOME` with Stow. The `sddm` directory is versioned theme source and is
+deployed as normal system files by `magala/deploy-sddm-theme.sh`, because SDDM
+cannot read theme files through symlinks into a private home directory.
 
 `magala/system/` contains non-Stow system configuration, currently the IWD
 and NetworkManager patches.

@@ -51,8 +51,8 @@ sudo install -Dm644 "$SYSTEM_DIR/etc/NetworkManager/conf.d/20-iwd-standalone.con
 info "Stowing user configuration"
 stow -d "$DOTFILES_DIR" -t "$HOME" "${DOTFILE_PACKAGES[@]}"
 
-info "Stowing the SDDM theme"
-sudo stow -d "$DOTFILES_DIR" -t / sddm
+info "Deploying the SDDM theme"
+"$ROOT_DIR/deploy-sddm-theme.sh"
 
 info "Enabling system services"
 sudo systemctl enable iwd.service NetworkManager.service systemd-resolved.service NetworkManager-wait-online.service sddm.service

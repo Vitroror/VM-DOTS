@@ -192,56 +192,56 @@
         "tooltip": false,
         "on-click": "wlogout -b 4",
     },
-},
-{
-    // Compact macOS-style application dock.  It is intentionally separate
-    // from the top status bar so both can be customized independently.
-    "name": "dock",
-    "position": "bottom",
-    "layer": "top",
-    // Reserve bottom space so tiled windows do not extend behind the dock.
-    "exclusive": true,
-    "passthrough": false,
-    "height": 15,
-    "margin-bottom": 6,
-    "spacing": 6,
-    "fixed-center": true,
-    "modules-center": [
-        "custom/dock-browser",
-        "custom/dock-files",
-        "custom/dock-terminal",
-        "custom/dock-steam",
-        "custom/dock-discord"
-    ],
-    "custom/dock-browser": {
-        "format": "",
-        "tooltip": true,
-        "tooltip-format": "Zen Browser",
-        "on-click": "zen-browser"
-    },
-    "custom/dock-files": {
-        "format": "",
-        "tooltip": true,
-        "tooltip-format": "Files",
-        "on-click": "thunar"
-    },
-    "custom/dock-terminal": {
-        "format": "",
-        "tooltip": true,
-        "tooltip-format": "Terminal",
-        "on-click": "kitty"
-    },
-    "custom/dock-steam": {
-        "format": "",
-        "tooltip": true,
-        "tooltip-format": "Steam",
-        "on-click": "steam-native"
-    },
-    "custom/dock-discord": {
-        "format": "",
-        "tooltip": true,
-        "tooltip-format": "Discord",
-        "on-click": "discord"
-    }
-}
+}//,
+// {
+//     // Compact macOS-style application dock.  It is intentionally separate
+//     // from the top status bar so both can be customized independently.
+//     "name": "dock",
+//     "position": "bottom",
+//     "layer": "top",
+//     // Reserve bottom space so tiled windows do not extend behind the dock.
+//     "exclusive": true,
+//     "passthrough": false,
+//     "height": 15,
+//     "margin-bottom": 6,
+//     "spacing": 6,
+//     "fixed-center": true,
+//     "modules-center": [
+//         "custom/dock-browser",
+//         "custom/dock-files",
+//         "custom/dock-terminal",
+//         "custom/dock-steam",
+//         "custom/dock-discord"
+//     ],
+//     "custom/dock-browser": {
+//         "format": "",
+//         "tooltip": true,
+//         "tooltip-format": "Zen Browser",
+//         "on-click": "zen-browser"
+//     },
+//     "custom/dock-files": {
+//         "format": "",
+//         "tooltip": true,
+//         "tooltip-format": "Files",
+//         "on-click": "thunar"
+//     },
+//     "custom/dock-terminal": {
+//         "format": "",
+//         "tooltip": true,
+//         "tooltip-format": "Terminal",
+//         "on-click": "kitty"
+//     },
+//     "custom/dock-steam": {
+//         "format": "",
+//         "tooltip": true,
+//         "tooltip-format": "Steam",
+//         "on-click": "steam-native"
+//     },
+//     "custom/dock-discord": {
+//         "format": "",
+//         "tooltip": true,
+//         "tooltip-format": "Discord",
+//         "on-click": "discord"
+//     }
+// }
 ]
