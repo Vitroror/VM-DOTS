@@ -1,4 +1,4 @@
-# VM DOTS
+# VM-DOTS
 
 The following is a repository containing some of my personal dotfiles for a few systems.
 
