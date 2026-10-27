@@ -10,6 +10,7 @@ hl.config({
             enabled = true,
         },
         dim_inactive = false,
+        inactive_opacity = 1.0,
         rounding = 2,
     },
     ecosystem = {
@@ -53,11 +54,11 @@ hl.monitor({
     scale = 1,
     bitdepth = 10,
     cm = "hdr",
-    sdrbrightness = 0.5,
-    sdrsaturation = 1.4,
-    sdr_min_luminance = 0.35,
+    sdrbrightness = 1,
+    sdrsaturation = 1.2,
+    sdr_min_luminance = 0,
     sdr_max_luminance = 351,
-    min_luminance = 0.05,
+    min_luminance = 0.35,
     max_luminance = 351,
     max_avg_luminance = 351,
 })
